@@ -1,0 +1,28 @@
+<div class="container" *ngIf="project">
+	
+	<div id="chuy" class="image" *ngIf="project.image">
+				<img class="image-detalle" src="{{url+'get-image/'+project.image}}"    >
+	</div>
+	<div class="data">	
+		<h1>{{project.name}}</h1>
+		<h2>{{project.description}}</h2>
+		<p>{{project.category}}</p>
+		<p>Tecnologia: <strong>{{project.lags}}</strong></p>
+	<a href="{{project.urlGit}}" *ngIf="project.urlGit"><p><img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" style="width: 2%;"> {{project.urlGit}}</p></a>
+
+		<p *ngIf="confirm == false">
+			<!-- <a [routerLink]="['/edit-proyecto',project._id]" class="button-edit">EDITAR</a>
+			<a (click)="confirmation(true)" class="button-delete">BORRAR</a> -->
+			<a [routerLink]="['/edit-proyecto',project._id]" class="btn btn-warning edit-detail" style="margin-right: 10px">EDITAR</a>
+			<a (click)="confirmation(true)" class="btn btn-danger edit-delete">BORRAR</a>
+
+		</p>
+		<div *ngIf="confirm == true" style="width: 35%;float: left;">
+			<span class="confirm">¿Estas seguro de emiminar el proyecto?</span>
+			<br>
+			<a (click)="confirmation(false)" class="btn btn-warning edit-detail edit-edit" style="margin-right: 10px">CANCELAR</a>
+			<a (click)="deleteProject(project._id)" class="btn btn-danger edit-delete">ELIMINAR DEFINITIVAMENTE</a>
+
+		</div>
+	</div>
+</div>

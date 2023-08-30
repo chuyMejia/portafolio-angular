@@ -1,0 +1,141 @@
+<div class="container" *ngIf="project">
+	<h2>{{title}}</h2>
+
+
+	<div class="message success " *ngIf="status == 'success'">
+		EL proyecto se a creado correctamente,puedes verlo <a [routerLink]="['/projecto',project._id]">aqui</a>
+	</div>
+
+	<div class="message failed " *ngIf="status == 'failed'">
+		El proyecto no se pudo crear 
+		
+	</div>
+
+
+	<form #projectForm="ngForm" (ngSubmit)="onSubmit(projectForm)" >
+
+		<div class="input-group flex-nowrap">
+
+			<!-- <label for="name" >Nombre</label> -->
+			<span class="input-group-text" id="addon-wrapping">Nombre</span>
+			<input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="project.name" required>
+			<!-- <span class="formError" *ngIf="name.touched && !name.valid">El nombre es obligatorio</span> -->
+
+			<div class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3" *ngIf="name.touched && !name.valid">
+			  El nombre es obligatorio
+			</div>
+
+
+		</div>
+		<br>
+		 
+		<!-- 	<label for="description" >description</label>
+			<textarea type="text" name="description" #description="ngModel" [(ngModel)]="project.description" required></textarea>
+			<span class="formError" *ngIf="description.touched && !description.valid">La descripcion es obligatorio</span>
+ -->	
+
+ 		<div class="input-group">
+			<span class="input-group-text">Description</span>
+			<textarea type="text" name="description" #description="ngModel" class="form-control" [(ngModel)]="project.description" required aria-label="With textarea"></textarea>
+			<!-- <span class="formError" *ngIf="description.touched && !description.valid">La descripcion es obligatorio</span>
+ -->
+			<div class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3" *ngIf="description.touched && !description.valid">
+			  La descripcion es obligatorio
+			</div>
+
+			
+		</div>
+		<br>
+
+		<div class="input-group flex-nowrap">
+			<!-- <label for="category" >Categoria</label> -->
+			<span class="input-group-text" id="addon-wrapping">Categoria</span>
+			<input type="text" class="form-control" name="category" #category="ngModel" [(ngModel)]="project.category" required>
+			
+
+			<!-- <span class="formError" *ngIf="category.touched && !category.valid">La Categoria es obligatorio</span> -->
+
+			
+			<div class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3" *ngIf="category.touched && !category.valid">
+			  La Categoria es obligatorio
+			</div>
+
+
+		</div>
+		<br>
+
+		 <div class="input-group flex-nowrap">
+			<!-- <label for="year" >Año</label> -->
+			<span class="input-group-text" id="addon-wrapping">Año</span>
+			<input type="text" class="form-control" name="year" #year="ngModel" [(ngModel)]="project.year" >
+		</div>
+
+		<br>
+
+		 <div class="input-group flex-nowrap">
+			<!-- <label for="lags" >Langs</label> -->
+			<span class="input-group-text" id="addon-wrapping">Langs</span>
+			<input type="text" class="form-control" name="lags" #lags="ngModel" [(ngModel)]="project.lags" required>
+			
+
+		<!-- 	<span class="formError" *ngIf="lags.touched && !lags.valid">Los Langs es obligatorio</span>
+ -->
+			<div class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3" *ngIf="lags.touched && !lags.valid">
+			  Los Langs es obligatorio
+			</div>
+
+
+
+		</div>
+
+
+		<br>
+
+		<div class="input-group flex-nowrap">
+			<!-- <label for="lags" >Langs</label> -->
+			<span class="input-group-text" id="addon-wrapping">git repositorio</span>
+			<input type="text" class="form-control" name="urlGit" #lags="ngModel" [(ngModel)]="project.urlGit" required>
+			
+
+		<!-- 	<span class="formError" *ngIf="lags.touched && !lags.valid">Los Langs es obligatorio</span>
+ -->
+			<!-- <div class="p-3 text-danger-emphasis bg-danger-subtle border border-danger-subtle rounded-3" *ngIf="lags.touched && !lags.valid">
+			  Los Langs es obligatorio
+			</div> -->
+
+
+
+		</div>
+
+
+
+
+	<!-- 	 <p>
+			<label for="image" >image</label>
+			<span id="chuy" class="image" *ngIf="project.image" style="float: none;">
+
+			<img src="{{url+'get-image/'+project.image}}" style="width:100px; " >
+			</span>
+			<br>
+
+
+			<input type="file" name="image" #image="ngModel" [(ngModel)]="project.image" placeholder="subir imagen" (change)="fileChangeEvent($event)">
+
+
+		</p> -->
+		    <span id="chuy" class="image" *ngIf="project.image" style="float: none;">
+ 
+			<img src="{{url+'get-image/'+project.image}}" style="width:100px; " >
+			</span>	
+		<br>
+		<div class="input-group mb-2">
+		  <input type="file" name="image" #image="ngModel" [(ngModel)]="project.image" class="form-control" placeholder="subir imagen"  id="inputGroupFile02" (change)="fileChangeEvent($event)">
+		  <!-- <label class="input-group-text" for="inputGroupFile02">Upload</label> -->
+		</div>
+
+
+		<input class="btn" type="submit" value="ENVIAR" [disabled]="!projectForm.form.valid"/>
+		
+	</form>
+</div>
+

@@ -1,0 +1,6 @@
+comandos angular
+
+
+
+ng serve ---> inicar el servidor
+ng g componet {nombre de componente}---->crear unh nuevo componente
